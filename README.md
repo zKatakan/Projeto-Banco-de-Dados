@@ -4,7 +4,7 @@ Esse topico e **provisorio e sera removido na entrega final do projeto**, vou us
 
 # Sobre o Git/Github
    Apesar do Github ser um repositorio remoto onde podemos sempre ter acesso ao nosso trabalho dw qualquer lugar, ele e o principal meio para a entrega do projeto de banco de dados, alem de ser uma otima ferramenta para atualizarmos o projeto apartir de nossos desktops proprios
-   Porem, o git e github sao ferramentas com muitas coisas a aprender, por isso, tomei a liberdade de deixar um arquivo para auxilar em alguns [comandos principais](comando_git.md) que usaremos para trabalhar no gitub, e alguns passos para iniciarmos
+   Porem, o git e github sao ferramentas com muitas coisas a aprender, por isso, tomei a liberdade de deixar um arquivo para auxilar em alguns [comandos principais](comandos_git.md) que usaremos para trabalhar no gitub, e alguns passos para iniciarmos
    # Baixando o Git
    + Antes de tudo, precisamos do proprio Git instalado para comecar a utilizar os comandos do Git e Github:
    + Baixe o proprio Git pelo site deles ou clique [aqui](https://git-scm.com/downloads) para ir direto para a area de download
