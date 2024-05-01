@@ -19,7 +19,7 @@ Esse topico e **provisorio e sera removido na entrega final do projeto**, vou us
 ## Como a dinamica Git e Github funciona?
 + Agora com a ferramenta Git instalada e integrada corretamente ao repositorio Github, sera possivel desenvolver cada parte do projeto em nossos desktops e em qualquer tempo, sem a necessidade de centralizar o desenvolvimento do codigo em um desktop e nem de unificar o tempo de desenvolvimento. Dessa forma, o desenvolvimento de cada parte do projeto esta separada em branches (ramificacoes) onde faremos o desenvolvimento, e quando completo, integraremos tudo na main do projeto
   ## Coisas para ter atencao
-  1. O Git/Github e uma ferramenta muito boa para desenvolver codigos e projetos, mas muito sensivel a erros de comandos (exemplo: upar uma mudanca do repositorio local sem querer e perder todo o desenvolvimento que estava na branch) portanto, atencao aos [comandos](comando_git.md)
+  1. O Git/Github e uma ferramenta muito boa para desenvolver codigos e projetos, mas muito sensivel a erros de comandos (exemplo: upar uma mudanca do repositorio local sem querer e perder todo o desenvolvimento que estava na branch) portanto, atencao aos [comandos](comandos_git.md)
   2. Lembre-se de a cada alteracao colocar, pelo menos, uma breve descricao do que foi alterado, assim evitando conflitos de desenvolvimento futuros
   3. Para uma alteracao ser validada e realmente alterar a branch ela tem de ser confirmada pelo usuario responsavel para isso (no momento sou eu por que eu nao adicionei ninguem ainda, mas vou mudar isso o quanto antes)
   4. Sempre faca a documentacao do projeto
