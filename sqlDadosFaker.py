@@ -11,12 +11,16 @@ import random
 
 faker = Faker("pt_BR") ##nomes brasileiros
 
-qtnomes = 30 ## 30 nomes
-qtalunos = 20 ## qtde de alunos 
+qtnomes = 60 ## 30 nomes
+qtalunos = 50 ## qtde de alunos 
 qtprof = qtnomes-qtalunos ## qtde de prof
-qtcurso = 6 ##qt de cursos
-qttcc = 3 ##qt de tccs
+curso_nomes = ["Ciência da Computação","Engenharia Civil","Administração","Engenharia de Materiais"] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
+qtcurso = 4 ##qt de cursos
+tcc_nomes = ["Super Leonardo Bros.","Engenhocas Dos Cidadões","Reino-ministração","DS de Pulso"] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
+qttcc = 4 ##qt de tccs
+dept_nomes = ["Exatas","Ciências","Humanas"] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
 qtdept = 3 ##qt de dept
+disc_nomes = ["Cálculo","Cálculo 2","Filosofia","Física","Física 2","Engenharia de Software"] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
 qtdisc = 3 ##qt de disc
 
 def montarID (qtIds,qtDigitos):
@@ -60,7 +64,6 @@ print("ID prof: ")
 print(prof_id)
 
 
-curso_nomes = [] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
 curso_id = montarID(qtcurso,6)   
 
 print("ID curso: ")
@@ -68,19 +71,19 @@ print(curso_id)
 
 
 
-tcc_nomes = [] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
+
 tcc_id = montarID(qttcc,5)
 print("ID tcc: ")
 print(tcc_id)
 
 
-dept_nomes = [] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
+
 dept_id = montarID(qtdept,4)   
 print("ID dept: ")
 print(dept_id)
 
 
-disc_nomes = [] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
+
 disc_id = montarID(qtdisc,3)
 print("ID Disc: ")
 print(disc_id)
@@ -88,14 +91,17 @@ print(disc_id)
 
 ##Comecar os inserts (colocar coisas no arquivo)
 
-arquivo = open("dadosSQL","w",encoding="utf-8") ##arquivo para depois usar no sql
-
+arquivo = open("dadosSQL.txt","w",encoding="utf-8") ##arquivo para depois usar no sql
+copiacurso_id = curso_id
 for x in range(qtalunos): ##inserir dados aluno
-    arquivo.write("insert into aluno (%s,%s,curso_id);\n" %(aluno_id[x],nomes[x])) ##falta terminar logica
-    arquivo.write("insert into historico_aluno (%s,disc_id,nota,semestre,ano);\n" %(aluno_id[x]))
+    indice = random.randint(0,len(copiacurso_id)-1) ##indice aleatorio
+    curso = copiacurso_id[indice] ##curso aleatorio
+    arquivo.write("insert into aluno (%s,%s,%s);\n" %(aluno_id[x],nomes[x],curso)) 
+    arquivo.write("insert into historico_aluno (%s,disc_id,nota,semestre,ano);\n" %(aluno_id[x])) ##falta terminar logica
+    copiacurso_id.pop(indice)
 
 for x in range(qtcurso): ##inserir dados curso
-    arquivo.write("insert into curso (%s,nome,dept_id);\n" %(curso_id[x])) ##falta terminar logica
+    arquivo.write("insert into curso (%s,%s,dept_id);\n" %(curso_id[x],curso_nomes[x])) ##falta terminar logica
 
 for x in range(qtdept): ##inserir dados dept
     arquivo.write("insert into departamento (%s,nome,chefe_id);\n" %(dept_id[x])) ##falta terminar logica
@@ -113,7 +119,7 @@ for x in range(qtprof): ##inserir dados prof
     arquivo.write("insert into professor (%s,%s);\n" % (prof_id[x],nomes[qtalunos+x])) ##falta terminar logica
     arquivo.write("insert into historico_professor(%s,disc_id,semestre,ano);\n" %(prof_id[x])) ##falta terminar logica
 
-
+arquivo.close()
 
 
 
