@@ -1,5 +1,7 @@
 from faker import Faker
 import random
+## FUTURO: 
+## - criar historicos isolados (disc_id,semestre,ano) para adicionar a UM professor, e a (possivelmente) varios alunos (isso ira decidir o disc_id dos profs)
 faker = Faker("pt_BR") ##nomes brasileiros
 ## aluno_id possui 8 digitos 
 ## prof_id possui 7 digitos
@@ -66,7 +68,7 @@ qtdisc = 5 ##qt de disc
 disc_id = montarID(qtdisc,3) ##ids das disc
 
 
-class aluno: ##terminado (acho)
+class aluno: ##Refazer com ideias futuras
     def __init__(self,aluno_id):
         self.aluno_id = aluno_id ##id do aluno
         self.nome = criarnome() ##nome do aluno
@@ -89,23 +91,23 @@ class aluno: ##terminado (acho)
     def insertHistorico(self): ##insert do historico
         return f"insert into historico_aluno({self.aluno_id},{self.disc_id},{self.nota},{self.hist_semestre},{self.hist_ano});\n"
 
-class professor: ##terminado (acho)
+class professor: ##Refazer com ideias futuras
     def __init__(self,prof_id,dept_nome):
         self.prof_id = prof_id ##id do prof
         self.nome = criarnome() ##nome do prof
-        self.dept_nome = dept_nome
-        todoscursos = dept_cursos[self.dept_nome]
-        cursoespecifio = todoscursos[random.randint(0,len(todoscursos)-1)]
+        self.dept_nome = dept_nome ##nome do dept
+        todoscursos = dept_cursos[self.dept_nome] ##todos os cursos do dept
+        cursoespecifio = todoscursos[random.randint(0,len(todoscursos)-1)] ##um dos cursos do dept
         todasasdisc = curso_disc[cursoespecifio] ##todas as disc do curso
-        disc = todasasdisc[random.randint(0,len(todasasdisc)-1)]
+        disc = todasasdisc[random.randint(0,len(todasasdisc)-1)] ##disc aleatoria das disponíveis
         pos = 0
         for x in disc_nomes:
             if disc == x:
                 break
             pos +=1
-        self.disc_id = disc_id[pos]
-        self.semestre = random.randint(1,2)
-        self.ano = random.randint(anoinicio,anofinal)
+        self.disc_id = disc_id[pos] ##id da disc
+        self.semestre = random.randint(1,2) ##semestre aleatorio
+        self.ano = random.randint(anoinicio,anofinal) ##ano aleatorio
 
 
 
@@ -118,7 +120,7 @@ class professor: ##terminado (acho)
         return f"insert into historico_professor({self.prof_id},{self.disc_id},{self.semestre},{self.ano});\n"
     
     
-class tcc:
+class tcc: ##por fazer
     def __init__(self,tcc_id,tcc_nome,prof_id,integrantes_id,curso_id,semestre,ano):
         self.tcc_id = tcc_id ##id do tcc
         self.tcc_nome = tcc_nome ##nome do tcc
@@ -130,7 +132,7 @@ class tcc:
     def __str__ (self):
         return
     
-class curso: ##terminado (acho)
+class curso: ##terminado
     def __init__(self,curso_id,curso_nome):
         self.curso_id = curso_id ##id do curso
         self.curso_nome = curso_nome ##nome do curso
@@ -148,7 +150,7 @@ class curso: ##terminado (acho)
     def insertDados(self):
         return f"insert into curso({self.curso_id},{self.curso_nome},{self.dept_id});\n"
 
-class departamento:
+class departamento: ##terminado
     def __init__(self,dept_id,dept_nome,chefe_id):
         self.dept_id = dept_id
         self.dept_nome = dept_nome
@@ -165,10 +167,11 @@ for x in range(qtalunos):
 profs = [] ##todos os prof
 for x in range(qtprof):
     if x < qtcurso:
-        profs.append(professor(prof_id[x],dept_nomes[x]))
+        profs.append(professor(prof_id[x],dept_nomes[x])) ##forca os primeiros a obrigatoriamente serem parte do dept que sao chefes
     else:
-        profs.append(professor(prof_id[x],dept_nomes[random.randint(0,qtdept-1)]))
+        profs.append(professor(prof_id[x],dept_nomes[random.randint(0,qtdept-1)])) ##adiciona objetos professor
     print(profs[x])
+    print(profs[x].insertHistorico())
 
 
 cursos = [] ##todos os cursos
