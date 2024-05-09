@@ -47,7 +47,7 @@ curso_disc = {"Ciência da Computação":["Cálculo","Engenharia de Software"],"
 qtcurso = len(curso_nomes) ##qt de cursos
 curso_id = montarID(qtcurso,6)## ids dos cursos
 
-qtprof = 5 ## qtde de prof (TEM QUE SER MAIOR OU IGUAL A QTDE DE CURSO!)
+qtprof = 5 ## qtde de prof (TEM QUE SER MAIOR OU IGUAL A QTDE DE CURSO!!!)
 prof_id = montarID(qtprof,7) ##ids dos profs
 
 tcc_nomes = ["Super Leonardo Bros.","Engenhocas Dos Cidadões","Reino-ministração","DS de Pulso"] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
@@ -56,12 +56,12 @@ tcc_id = montarID(qttcc,5) ##ids dos tccs
 integrantestcc = 2 ##qt de integrantes por tcc
 
 dept_nomes = ["Exatas","Ciências","Humanas"] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
-dept_cursos = {"Exatas":["Engenharia Civil",],"Ciências":["Ciência da Computação"],"Humanas":["Administração"]} 
+dept_cursos = {"Exatas":["Engenharia Civil"],"Ciências":["Ciência da Computação"],"Humanas":["Administração"]} 
 
 qtdept = len(dept_cursos) ##qt de dept, tem que ser igual ou menor que quantidade de prof
 dept_id = montarID(qtdept,4) ##ids dos dept   
 
-# disc_nomes = ["Cálculo","Engenharia de Software","Materia Engen.","Materia Admin.","Materia Mat."] ##para referencia!
+disc_nomes = ["Cálculo","Engenharia de Software","Materia Engen.","Materia Admin.","Materia Mat."] ##para referencia!
 qtdisc = 5 ##qt de disc
 disc_id = montarID(qtdisc,3) ##ids das disc
 
@@ -89,12 +89,34 @@ class aluno: ##terminado (acho)
     def insertHistorico(self): ##insert do historico
         return f"insert into historico_aluno({self.aluno_id},{self.disc_id},{self.nota},{self.hist_semestre},{self.hist_ano});\n"
 
-class professor:
-    def __init__(self,prof_id):
+class professor: ##terminado (acho)
+    def __init__(self,prof_id,dept_nome):
         self.prof_id = prof_id ##id do prof
         self.nome = criarnome() ##nome do prof
+        self.dept_nome = dept_nome
+        todoscursos = dept_cursos[self.dept_nome]
+        cursoespecifio = todoscursos[random.randint(0,len(todoscursos)-1)]
+        todasasdisc = curso_disc[cursoespecifio] ##todas as disc do curso
+        disc = todasasdisc[random.randint(0,len(todasasdisc)-1)]
+        pos = 0
+        for x in disc_nomes:
+            if disc == x:
+                break
+            pos +=1
+        self.disc_id = disc_id[pos]
+        self.semestre = random.randint(1,2)
+        self.ano = random.randint(anoinicio,anofinal)
+
+
+
+
     def __str__(self):
         return f"ID: {self.prof_id}\nNome: {self.nome}\n"
+    def insertDados(self):
+        return f"insert into professor({self.prof_id},{self.nome});\n"
+    def insertHistorico(self):
+        return f"insert into historico_professor({self.prof_id},{self.disc_id},{self.semestre},{self.ano});\n"
+    
     
 class tcc:
     def __init__(self,tcc_id,tcc_nome,prof_id,integrantes_id,curso_id,semestre,ano):
@@ -126,6 +148,14 @@ class curso: ##terminado (acho)
     def insertDados(self):
         return f"insert into curso({self.curso_id},{self.curso_nome},{self.dept_id});\n"
 
+class departamento:
+    def __init__(self,dept_id,dept_nome,chefe_id):
+        self.dept_id = dept_id
+        self.dept_nome = dept_nome
+        self.chefe_id = chefe_id
+    def insertDados(self):
+        return f"insert into departamento({self.dept_id},{self.dept_nome},{self.chefe_id});\n"
+
 alunos = [] ##todos os alunos
 for x in range(qtalunos):
     alunos.append(aluno(aluno_id[x]))
@@ -134,14 +164,21 @@ for x in range(qtalunos):
 
 profs = [] ##todos os prof
 for x in range(qtprof):
-    profs.append(professor(prof_id[x]))
+    if x < qtcurso:
+        profs.append(professor(prof_id[x],dept_nomes[x]))
+    else:
+        profs.append(professor(prof_id[x],dept_nomes[random.randint(0,qtdept-1)]))
     print(profs[x])
+
 
 cursos = [] ##todos os cursos
 for x in range(qtcurso):
     cursos.append(curso(curso_id[x],curso_nomes[x]))
     print(cursos[x])
 
+depts = []
+for x in range(qtdept):
+    depts.append(departamento(dept_id[x],dept_nomes[x],prof_id[x]))
 
 arquivo = open("dadosInsert.txt","w",encoding="utf-8") ##arquivo para depois usar no sql
 
@@ -151,6 +188,14 @@ for x in range(qtalunos): ##insere dados dos alunos e seus historicos
  
 for x in range(qtcurso): ##insere dados dos cursos
     arquivo.write(cursos[x].insertDados())
+
+for x in range(qtdept): ##insere dados dos profs
+    arquivo.write(depts[x].insertDados())
+for x in range(qtprof):
+    arquivo.write(profs[x].insertDados())
+    arquivo.write(profs[x].insertHistorico())
+    
+        
 
 
 
