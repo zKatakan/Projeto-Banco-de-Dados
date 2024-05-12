@@ -1,7 +1,7 @@
 from faker import Faker
 import random
 ## FUTURO: 
-## - criar historicos isolados (disc_id,semestre,ano) para adicionar a UM professor, e a (possivelmente) varios alunos (isso ira decidir o disc_id dos profs)
+## - 
 faker = Faker("pt_BR") ##nomes brasileiros
 ## aluno_id possui 8 digitos 
 ## prof_id possui 7 digitos
@@ -43,63 +43,86 @@ qtalunos = 10 ## qtde de alunos
 aluno_id = montarID(qtalunos,8) ##ids dos alunos
 
 
-curso_nomes = ["Ciência da Computação","Engenharia Civil","Administração",] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
+curso_nomes = ["Ciência da Computação","Engenharia Civil","Administração",] ##adicionar na mao 
 ## vv Relação entre cursos e disc
-curso_disc = {"Ciência da Computação":["Cálculo","Engenharia de Software"],"Engenharia Civil":["Cálculo","Materia Engen."],"Administração":["Cálculo","Materia Admin."]} ##quais cursos tem quais disciplinas
+curso_disc = {"Ciência da Computação":["Cálculo","Engenharia de Software"],"Engenharia Civil":["Cálculo","Materia Engen."],"Administração":["Cálculo","Materia Admin."]} ##quais cursos tem quais disciplinas (adicionar na mão)
+
 qtcurso = len(curso_nomes) ##qt de cursos
 curso_id = montarID(qtcurso,6)## ids dos cursos
 
-qtprof = 5 ## qtde de prof (TEM QUE SER MAIOR OU IGUAL A QTDE DE CURSO!!!)
+qtprof = 5 ## qtde de prof (TEM QUE SER MAIOR OU IGUAL A QTDE DE DISC!!!) 
 prof_id = montarID(qtprof,7) ##ids dos profs
 
-tcc_nomes = ["Super Leonardo Bros.","Engenhocas Dos Cidadões","Reino-ministração","DS de Pulso"] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
+tcc_nomes = ["Super Leonardo Bros.","Engenhocas Dos Cidadões","Reino-ministração","DS de Pulso"] ##adicionar na mao 
 qttcc = len(tcc_nomes) ##qt de tccs
 tcc_id = montarID(qttcc,5) ##ids dos tccs
 integrantestcc = 2 ##qt de integrantes por tcc
 
-dept_nomes = ["Exatas","Ciências","Humanas"] ##adicionar na mao (ter certeza que ha mais nomes que qt!)
+dept_nomes = ["Exatas","Ciências","Humanas"] ##adicionar na mao (ter certeza que ha mais nomes que qt!) 
 dept_cursos = {"Exatas":["Engenharia Civil"],"Ciências":["Ciência da Computação"],"Humanas":["Administração"]} 
 
 qtdept = len(dept_cursos) ##qt de dept, tem que ser igual ou menor que quantidade de prof
 dept_id = montarID(qtdept,4) ##ids dos dept   
 
 disc_nomes = ["Cálculo","Engenharia de Software","Materia Engen.","Materia Admin.","Materia Mat."] ##para referencia!
-qtdisc = 5 ##qt de disc
+qtdisc = len(disc_nomes) ##qt de disc
 disc_id = montarID(qtdisc,3) ##ids das disc
 
 
+
+
+class aula:## para montar historico (mesma qtde que profs)
+    def __init__(self,disc_id,semestre,ano):
+        self.disc_id = disc_id
+        self.semestre = semestre
+        self.ano = ano
+    def __str__(self):
+        return f"{self.disc_id}\n{self.semestre}\n{self.ano}\n"
+        
+
 class aluno: ##Refazer com ideias futuras
-    def __init__(self,aluno_id):
+    def __init__(self,aluno_id,curso_id,aula=0):
         self.aluno_id = aluno_id ##id do aluno
         self.nome = criarnome() ##nome do aluno
-        poscurso = random.randint(0,qtcurso-1) ##pos aleatoria de curso
-        self.curso_nome = curso_nomes[poscurso] ##curso escolhido do aluno
-        self.curso_id = curso_id[poscurso] ##id do curso escolhido
-        self.disc_disp = curso_disc[self.curso_nome] ##disciplinas disponiveis para o aluno
+
+        self.curso_id = curso_id
+
+        self.aula = aula
+        self.semestre = self.aula.semestre
+        self.ano = self.aula.ano
+        self.disc_id = self.aula.disc_id
         self.nota = random.randint(0,10) ##nota aleatoria
-        posdisc = random.randint(0,len(self.disc_disp)-1) ##pos aleatoria de disc
-        self.hist_disc = self.disc_disp[posdisc] ##disc aleatoria dentro das disponiveis
-        self.disc_id = disc_id[random.randint(0,len(self.disc_disp)-1)] ##id da disc escolhida
-        self.hist_semestre = random.randint(1,2) ##semestre aleatorio
-        self.hist_ano = random.randint(anoinicio,anofinal) ##ano aleatorio
+        
+        
+        
+
+
     def __str__(self): ##print basico
-        return f"ID: {self.aluno_id}\nNome: {self.nome}\nCurso: {self.curso_nome}\n"
+        return f"ID: {self.aluno_id}\nNome: {self.nome}\nCurso: {self.curso_id}\n"
     def insertDados(self): ##insert dos dados
         return f"insert into aluno({self.aluno_id},{self.nome},{self.curso_id});\n"
     def historico(self): ##print do historico
-        return f"Disc: {self.hist_disc}\nNota: {self.nota}\nAno: {self.hist_ano}\nSemestre: {self.hist_semestre}\n"
+        return f"Disc: {self.disc_id}\nNota: {self.nota}\nAno: {self.ano}\nSemestre: {self.semestre}\n"
     def insertHistorico(self): ##insert do historico
-        return f"insert into historico_aluno({self.aluno_id},{self.disc_id},{self.nota},{self.hist_semestre},{self.hist_ano});\n"
+        return f"insert into historico_aluno({self.aluno_id},{self.disc_id},{self.nota},{self.semestre},{self.ano});\n"
 
 class professor: ##Refazer com ideias futuras
-    def __init__(self,prof_id,dept_nome):
+    def __init__(self,prof_id,dept_id,aula): ##aula sendo um objeto
         self.prof_id = prof_id ##id do prof
         self.nome = criarnome() ##nome do prof
-        self.dept_nome = dept_nome ##nome do dept
+        self.dept_id = dept_id ##nome do dept
+        self.aula = aula
+        self.disc_id = self.aula.disc_id
+        self.semestre = self.aula.semestre
+        self.ano = self.aula.ano
+
+        '''
         todoscursos = dept_cursos[self.dept_nome] ##todos os cursos do dept
         cursoespecifio = todoscursos[random.randint(0,len(todoscursos)-1)] ##um dos cursos do dept
         todasasdisc = curso_disc[cursoespecifio] ##todas as disc do curso
         disc = todasasdisc[random.randint(0,len(todasasdisc)-1)] ##disc aleatoria das disponíveis
+
+
         pos = 0
         for x in disc_nomes:
             if disc == x:
@@ -108,7 +131,7 @@ class professor: ##Refazer com ideias futuras
         self.disc_id = disc_id[pos] ##id da disc
         self.semestre = random.randint(1,2) ##semestre aleatorio
         self.ano = random.randint(anoinicio,anofinal) ##ano aleatorio
-
+        '''
 
 
 
@@ -118,6 +141,9 @@ class professor: ##Refazer com ideias futuras
         return f"insert into professor({self.prof_id},{self.nome});\n"
     def insertHistorico(self):
         return f"insert into historico_professor({self.prof_id},{self.disc_id},{self.semestre},{self.ano});\n"
+        
+        
+    
     
     
 class tcc: ##por fazer
@@ -132,10 +158,11 @@ class tcc: ##por fazer
     def __str__ (self):
         return
     
-class curso: ##terminado
+class curso: ##possui curso_id,curso_nome e dept_id
     def __init__(self,curso_id,curso_nome):
         self.curso_id = curso_id ##id do curso
         self.curso_nome = curso_nome ##nome do curso
+        
         pos = 0
         for x in dept_cursos: ##procura curso dentro de dept
             tododept = dept_cursos[x]
@@ -150,26 +177,44 @@ class curso: ##terminado
     def insertDados(self):
         return f"insert into curso({self.curso_id},{self.curso_nome},{self.dept_id});\n"
 
-class departamento: ##terminado
+class departamento: ##possui dept_id, dept_nome,chefe_id,cursos do dept,discs do dept
     def __init__(self,dept_id,dept_nome,chefe_id):
         self.dept_id = dept_id
         self.dept_nome = dept_nome
         self.chefe_id = chefe_id
+        self.cursos = dept_cursos[dept_nome] ##todos os cursos no dept
+        self.discs = [] ##todas as disc no dept
+        for x in self.cursos: ##percorre para adicionar as disc
+            self.discs.append(x)
     def insertDados(self):
         return f"insert into departamento({self.dept_id},{self.dept_nome},{self.chefe_id});\n"
 
+depts = []
+for x in range(qtdept):
+    depts.append(departamento(dept_id[x],dept_nomes[x],prof_id[x]))
+
+aulas = []
+for x in range(qtprof):
+    if x < len(disc_id): ##criar historicos ate ter 1 para cada disc
+        aulas.append(aula(disc_id[x],random.randint(1,2),random.randint(anoinicio,anofinal)))
+    
+    
+
+
+
+
 alunos = [] ##todos os alunos
 for x in range(qtalunos):
-    alunos.append(aluno(aluno_id[x]))
+    alunos.append(aluno(aluno_id[x],curso_id[x%qtcurso],aulas[x%len(aulas)]))
     print(alunos[x]) 
     print(alunos[x].historico()) 
 
 profs = [] ##todos os prof
 for x in range(qtprof):
     if x < qtcurso:
-        profs.append(professor(prof_id[x],dept_nomes[x])) ##forca os primeiros a obrigatoriamente serem parte do dept que sao chefes
+        profs.append(professor(prof_id[x],dept_nomes[x],aulas[x])) ##forca os primeiros a obrigatoriamente serem parte do dept que sao chefes
     else:
-        profs.append(professor(prof_id[x],dept_nomes[random.randint(0,qtdept-1)])) ##adiciona objetos professor
+        profs.append(professor(prof_id[x],dept_nomes[random.randint(0,qtdept-1)],aulas[x])) ##adiciona objetos professor
     print(profs[x])
     print(profs[x].insertHistorico())
 
@@ -179,9 +224,7 @@ for x in range(qtcurso):
     cursos.append(curso(curso_id[x],curso_nomes[x]))
     print(cursos[x])
 
-depts = []
-for x in range(qtdept):
-    depts.append(departamento(dept_id[x],dept_nomes[x],prof_id[x]))
+
 
 arquivo = open("dadosInsert.txt","w",encoding="utf-8") ##arquivo para depois usar no sql
 
@@ -192,11 +235,20 @@ for x in range(qtalunos): ##insere dados dos alunos e seus historicos
 for x in range(qtcurso): ##insere dados dos cursos
     arquivo.write(cursos[x].insertDados())
 
-for x in range(qtdept): ##insere dados dos profs
+for x in range(qtdept): ##insere dados dos dept
     arquivo.write(depts[x].insertDados())
-for x in range(qtprof):
+
+for x in range(qtprof): ##insere dados dos profs
     arquivo.write(profs[x].insertDados())
     arquivo.write(profs[x].insertHistorico())
+
+for x in curso_disc: ##insere dados do matriz_curricular (nao sei oq eh :/)
+    for y in x:
+        arquivo.write("insert into matriz_curricular(disc_id,curso_id,semestre)\n")
+
+for x in range(qttcc): ##insere dados do tcc
+    arquivo.write("insert into tcc(nome,tcc_id,curso_id,prof_id,ano,semestre)\n")
+    break
     
         
 
@@ -204,6 +256,7 @@ for x in range(qtprof):
 
 
 arquivo.close()
+
 
 
 
