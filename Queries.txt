@@ -68,5 +68,5 @@ create table tcc (
 
 create table grupo_tcc (
 	tcc_id varchar(20),
-	aluno_nome varchar(255)
+	aluno_id varchar(255)
 );
