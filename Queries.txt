@@ -23,6 +23,7 @@ create table aluno(
 create table historico_aluno(
 	aluno_id varchar(20),
 	disc_id varchar(20),
+	curso_id varchar(20),
 	nota int,
 	semestre int,
 	ano int,
