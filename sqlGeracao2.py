@@ -21,7 +21,7 @@ def montarID (qtIds,qtDigitos): ##monta IDs aleatorios
         digitomax +="9"
     for x in range(qtIds):
         novoid = random.randint((10**(qtDigitos-1)),int(digitomax))
-        while novoid in Array:
+        while novoid in Array or novoid == 48349610:
             novoid = random.randint((10**(qtDigitos-1)),int(digitomax))
         Array.append(novoid)
     return Array
@@ -102,13 +102,13 @@ class aluno: ##Refazer com ideias futuras
 
 
     def __str__(self): ##print basico
-        return f"ID: {self.aluno_id}\nNome: {self.nome}\nCurso: {self.curso_id}\n"
+        return f"ID: {self.aluno_id}\nNome: {self.nome}\nCurso: {self.curso_id}\nDisc: {self.disc_id}\n"
     def insertDados(self): ##insert dos dados
         return f"insert into aluno values(\'{self.nome}\',\'{self.aluno_id}\',\'{self.curso_id}\');\n"
     def historico(self): ##print do historico
         return f"Disc: {self.disc_id}\nNota: {self.nota}\nAno: {self.ano}\nSemestre: {self.semestre}\n"
     def insertHistorico(self): ##insert do historico
-        return f"insert into historico_aluno values(\'{self.aluno_id}\',\'{self.disc_id}\',{self.nota},{self.semestre},{self.ano});\n"
+        return f"insert into historico_aluno values(\'{self.aluno_id}\',\'{self.disc_id}\',\'{self.curso_id}\',{self.nota},{self.semestre},{self.ano});\n"
 
 class professor: ##Refazer com ideias futuras
     def __init__(self,prof_id,dept_id,aula): ##aula sendo um objeto
@@ -132,16 +132,16 @@ class professor: ##Refazer com ideias futuras
     
     
 class tcc: ##por fazer
-    def __init__(self,tcc_id,tcc_nome,prof_id,integrantes_id,curso_id,semestre,ano):
+    def __init__(self,tcc_id,tcc_nome,prof_id,integrantes_id,curso_id):
         self.tcc_id = tcc_id ##id do tcc
         self.tcc_nome = tcc_nome ##nome do tcc
         self.prof_id = prof_id ##nome do prof responsavel
         self.integrantes_id = integrantes_id ##id dos integrantes (array)
         self.curso_id = curso_id ##id do curso
-        self.semestre = semestre ##semestre
-        self.ano = ano ##ano
-    def __str__ (self):
-        return
+        
+    def insertDados (self):
+        return f"insert into tcc values(\'{self.tcc_nome}\',\'{self.tcc_id}\',\'{self.curso_id}\',\'{self.prof_id}\');\n"
+    
     
 class curso: ##possui curso_id,curso_nome e dept_id
     def __init__(self,curso_id,curso_nome):
@@ -156,11 +156,22 @@ class curso: ##possui curso_id,curso_nome e dept_id
             pos +=1
 
         self.dept_id = dept_id[pos] ##id do dept
+        self.discs_nomes = curso_disc[self.curso_nome]
+        self.discs_ids = []
+        for x in self.discs_nomes: ##cria uma lista com o id de todas as disc do curso
+            for y in range(len(disc_nomes)):
+                if x == disc_nomes[y]:
+                    self.discs_ids.append(disc_id[y])
+            
+        
 
     def __str__ (self):
         return f"Dept_ID: {self.dept_id}\nCurso_ID: {self.curso_id}\nNome: {self.curso_nome}\n"
     def insertDados(self):
         return f"insert into curso values(\'{self.curso_nome}\',\'{self.curso_id}\',\'{self.dept_id}\');\n"
+   
+        
+            
 
 class departamento: ##possui dept_id, dept_nome,chefe_id,cursos do dept,discs do dept
     def __init__(self,dept_id,dept_nome,chefe_id):
@@ -213,10 +224,20 @@ for x in range(qtcurso):
     cursos.append(curso(curso_id[x],curso_nomes[x]))
     print(cursos[x])
 
+tccs = []
+for x in range(qttcc):
+    alunosintegrantes = []
+
+    for y in range(integrantestcc):
+        for c in alunos:
+            if c.curso_id == curso_id[x]:
+                alunosintegrantes.append(c.aluno_id)
+                
+    tccs.append(tcc(tcc_id[x],tcc_nomes[x],prof_id[x],alunosintegrantes,curso_id[x]))
 
 
 arquivo = open("dadosInsert.txt","w",encoding="utf-8") ##arquivo para depois usar no sql
-
+ ## insercao de dados no arquivo
 for x in range(qtalunos): ##insere dados dos alunos e seus historicos
     arquivo.write(alunos[x].insertDados())
     arquivo.write(alunos[x].insertHistorico())
@@ -237,70 +258,34 @@ for x in range(qtdisc): ##insere dados da disc ( nao usa orientacao objeto :( )
             idprocurado = y.dept_id
     arquivo.write("insert into disciplina values(\'%s\',\'%s\',\'%s\');\n" %(disc_nomes[x],disc_id[x],idprocurado))
     
-for x in range(qttcc):
+   
+for x in cursos: ##insere dados matriz_curricular
+    sem = 1
+    for y in x.discs_ids:
+        arquivo.write("insert into matriz_curricular values(\'%s\',\'%s\',%s);\n" %(y,x.curso_id,sem))
+        sem +=1
+
+for x in tccs:
     
-    arquivo.write("insert into tcc values(nome,tcc_id,curso_id,prof_id,ano,semestre);\n")
-    arquivo.write("insert into grupo_tcc values(tcc_id,aluno_id);\n")
-
-
-'''
-for x in curso_disc: ##insere dados do matriz_curricular (nao sei oq eh :/)
-    for y in x:
-        arquivo.write("insert into matriz_curricular values(disc_id,curso_id,semestre);\n")
-
-for x in range(qttcc): ##insere dados do tcc
-    arquivo.write("insert into tcc values(nome,tcc_id,curso_id,prof_id,ano,semestre);\n")
-    break
-'''
-        
-
-
-
-
-arquivo.close()
-
-
-
-
-
-
-##Comecar os inserts (colocar coisas no arquivo)
-
-
-
-
-
-
-'''
-
-for x in range(qtalunos): ##inserir dados aluno
-    indice = random.randint(0,qtcurso-1)
-    disc_hist = curso_disc[curso_nomes[indice]][random.randint(0,len(curso_disc[curso_nomes[indice]])-1)] ##disc aleatoria dentro do curso selecionado
-    arquivo.write("insert into aluno (%s,%s,%s);\n" %(aluno_id[x],nomes[x],curso_id[indice])) 
-    arquivo.write("insert into historico_aluno (%s,%s,%s,%s,%s);\n" %(aluno_id[x], disc_hist ,random.randint(0,10),random.randint(1,2),random.randint(anoinicio,anofinal)))
-    
-
-for x in range(qtcurso): ##inserir dados curso
-    arquivo.write("insert into curso (%s,%s,dept_id);\n" %(curso_id[x],curso_nomes[x])) ##falta atrelar curso a dept
-
-for x in range(qtdept): ##inserir dados dept
-    arquivo.write("insert into departamento (%s,%s,%s);\n" %(dept_id[x],dept_nomes[x],prof_id[x])) 
-    
-for x in range(qtdisc): ##inserir dados disc
-    arquivo.write("insert into disciplina (%s,%s,dept_id);\n" %(disc_id[x],disc_nomes[x])) ##falta atrelar dept a disc
-    
-
-for x in range(qttcc): ##inserir dados tcc
-    arquivo.write("insert into tcc(%s,%s,%s,curso_id,ano,semestre);\n" %(tcc_id[x],tcc_nomes[x], prof_id[random.randint(0,len(prof_id)-1)], )) ##falta atrelar id prof com curso
+    arquivo.write(x.insertDados())
     for y in range(integrantestcc):
-        arquivo.write("insert into part_tcc(%s,aluno_id);\n"%(tcc_id[x])) ##falta terminar logica
+        arquivo.write("insert into grupo_tcc values(\'%s\',\'%s\');\n" %(x.tcc_id,x.integrantes_id[y]))
 
-for x in range(qtprof): ##inserir dados prof
-    arquivo.write("insert into professor (%s,%s);\n" % (prof_id[x],nomes[qtalunos+x])) 
-    arquivo.write("insert into historico_professor(%s,disc_id,semestre,ano);\n" %(prof_id[x])) ##falta terminar logica
+
+##aluno para modificar e usar para testes
+'''
+arquivo.write("insert into aluno values(\'Pedro Munhoz Rosin\',\'48349610\',\'curso_id\');\n") ##colocar colocar curso_id
+'''
+
+
+
 
 arquivo.close()
-'''
+
+
+
+
+
 
 
 
