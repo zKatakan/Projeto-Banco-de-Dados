@@ -2,10 +2,6 @@ from faker import Faker
 import random
 ##Avisos: 
 ## departamento nao eh um objeto! (ficou muito trabalho pra implementar no codigo ja existente, entao nao fiz :/)
-## FUTURO: 
-## - implementar tcc
-## - implementar grupo_tcc
-## - implementar matriz_curricular
 faker = Faker("pt_BR") ##nomes brasileiros
 ## aluno_id possui 8 digitos 
 ## prof_id possui 7 digitos
@@ -95,7 +91,7 @@ class aluno: ##Refazer com ideias futuras
         self.semestre = self.aula.semestre
         self.ano = self.aula.ano
         self.disc_id = self.aula.disc_id
-        self.nota = random.randint(0,10) ##nota aleatoria
+        self.nota = random.randint(0,100)/10 ##nota aleatoria
         
         
         
@@ -206,8 +202,8 @@ for x in range(qtprof):
 alunos = [] ##todos os alunos
 for x in range(qtalunos):
     alunos.append(aluno(aluno_id[x],curso_id[x%qtcurso],aulas[x%len(aulas)]))
-    print(alunos[x]) 
-    print(alunos[x].historico()) 
+    ##print(alunos[x]) ##print de teste
+    ##print(alunos[x].historico()) ##print de teste 
 
 profs = [] ##todos os prof
 for x in range(qtprof):
@@ -215,14 +211,14 @@ for x in range(qtprof):
         profs.append(professor(prof_id[x],dept_nomes[x],aulas[x])) ##forca os primeiros a obrigatoriamente serem parte do dept que sao chefes
     else:
         profs.append(professor(prof_id[x],dept_nomes[random.randint(0,qtdept-1)],aulas[x])) ##adiciona objetos professor
-    print(profs[x])
-    print(profs[x].insertHistorico())
+    ##print(profs[x]) ##print de teste
+    ##print(profs[x].insertHistorico()) ##print de teste
 
 
 cursos = [] ##todos os cursos
 for x in range(qtcurso):
     cursos.append(curso(curso_id[x],curso_nomes[x]))
-    print(cursos[x])
+    ##print(cursos[x]) ##print de teste
 
 tccs = []
 for x in range(qttcc):
@@ -281,7 +277,6 @@ arquivo.write("insert into aluno values(\'Pedro Munhoz Rosin\',\'48349610\',\'cu
 
 
 arquivo.close()
-
 
 
 
