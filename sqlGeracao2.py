@@ -2,6 +2,10 @@ from faker import Faker
 import random
 ##Avisos: 
 ## departamento nao eh um objeto! (ficou muito trabalho pra implementar no codigo ja existente, entao nao fiz :/)
+## FUTURO: 
+## - implementar tcc
+## - implementar grupo_tcc
+## - implementar matriz_curricular
 faker = Faker("pt_BR") ##nomes brasileiros
 ## aluno_id possui 8 digitos 
 ## prof_id possui 7 digitos
@@ -80,19 +84,25 @@ class aula:## para montar historico (mesma qtde que profs)
         return f"{self.disc_id}\n{self.semestre}\n{self.ano}\n"
         
 
-class aluno: ##Refazer com ideias futuras
-    def __init__(self,aluno_id,curso_id,aula=0):
+class aluno: ##para montar alunos
+    def __init__(self,aluno_id,curso_id,aula,aula2=0):
         self.aluno_id = aluno_id ##id do aluno
         self.nome = criarnome() ##nome do aluno
 
         self.curso_id = curso_id
-
+       
         self.aula = aula
         self.semestre = self.aula.semestre
         self.ano = self.aula.ano
         self.disc_id = self.aula.disc_id
         self.nota = random.randint(0,100)/10 ##nota aleatoria
-        
+        self.aula2 = aula2
+        if self.aula2 != 0:
+            self.semestre2 = self.aula2.semestre
+            self.ano2 = self.aula2.ano
+            self.disc_id2 = self.aula2.disc_id
+            self.nota2 = random.randint(0,100)/10 
+            
         
         
 
@@ -104,7 +114,11 @@ class aluno: ##Refazer com ideias futuras
     def historico(self): ##print do historico
         return f"Disc: {self.disc_id}\nNota: {self.nota}\nAno: {self.ano}\nSemestre: {self.semestre}\n"
     def insertHistorico(self): ##insert do historico
-        return f"insert into historico_aluno values(\'{self.aluno_id}\',\'{self.disc_id}\',\'{self.curso_id}\',{self.nota},{self.semestre},{self.ano});\n"
+        if self.aula2 != 0:
+            return f"insert into historico_aluno values(\'{self.aluno_id}\',\'{self.disc_id}\',\'{self.curso_id}\',{self.nota},{self.semestre},{self.ano});\ninsert into historico_aluno values(\'{self.aluno_id}\',\'{self.disc_id2}\',\'{self.curso_id}\',{self.nota2},{self.semestre2},{self.ano2});\n"
+        else:
+            return f"insert into historico_aluno values(\'{self.aluno_id}\',\'{self.disc_id}\',\'{self.curso_id}\',{self.nota},{self.semestre},{self.ano});\n"
+    
 
 class professor: ##Refazer com ideias futuras
     def __init__(self,prof_id,dept_id,aula): ##aula sendo um objeto
@@ -201,7 +215,10 @@ for x in range(qtprof):
 
 alunos = [] ##todos os alunos
 for x in range(qtalunos):
-    alunos.append(aluno(aluno_id[x],curso_id[x%qtcurso],aulas[x%len(aulas)]))
+    if x%len(aulas) > 2:
+        alunos.append(aluno(aluno_id[x],curso_id[x%qtcurso],aulas[x%len(aulas)-3],aulas[x%len(aulas)]))
+    else:
+        alunos.append(aluno(aluno_id[x],curso_id[x%qtcurso],aulas[x%len(aulas)]))
     ##print(alunos[x]) ##print de teste
     ##print(alunos[x].historico()) ##print de teste 
 
