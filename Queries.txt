@@ -9,8 +9,7 @@ create table historico_professor(
 	prof_id varchar(20),
 	disc_id varchar(20),
 	semestre int,
-	ano int,
-    	primary key (prof_id)
+	ano int
 );
 
 create table aluno(
