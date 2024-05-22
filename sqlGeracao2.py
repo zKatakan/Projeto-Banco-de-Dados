@@ -38,8 +38,10 @@ def criarnome (): ##cria nomes unicos
     return novonome
 
 
-anoinicio = 2015 ##ano minimo para historico
-anofinal = 2024 ##ano maximo para historico
+anoinicio1 = 2015 ##ano minimo para historico
+anofinal1 = 2019
+anoinicio2 = 2020 
+anofinal2 = 2024 ##ano maximo para historico
 
 
 
@@ -206,7 +208,10 @@ for x in range(qtdept):
 aulas = []
 for x in range(qtprof):
     if x < len(disc_id): ##criar historicos ate ter 1 para cada disc
-        aulas.append(aula(disc_id[x],random.randint(1,2),random.randint(anoinicio,anofinal)))
+        if x < 3:
+            aulas.append(aula(disc_id[x],random.randint(1,2),random.randint(anoinicio1,anofinal1)))
+        else:
+            aulas.append(aula(disc_id[x],random.randint(1,2),random.randint(anoinicio2,anofinal2)))
     
     
 
