@@ -26,8 +26,7 @@ create table historico_aluno(
 	curso_id varchar(20),
 	nota int,
 	semestre int,
-	ano int,
-    	primary key (aluno_id)
+	ano int
 );
 
 create table curso (
