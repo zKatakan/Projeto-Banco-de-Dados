@@ -42,7 +42,7 @@ anofinal2 = 2024 ##ano maximo para historico
 
 
 
-qtalunos = 40 ## qtde de alunos 
+qtalunos = 50 ## qtde de alunos 
 aluno_id = montarID(qtalunos,8) ##ids dos alunos
 
 
@@ -290,11 +290,7 @@ for x in alunos: ##insere dados dos graduados
     if x.aula2 !=0:
         if x.nota >= 5 and x.nota2>=5:
             ##print(x.aluno_id,x.nome,x.curso_id) ##print de teste
-            arquivo.write("insert into graduado values(\'%s\',\'%s\',\'%s\');\n"%(x.aluno_id,x.nome,x.curso_id)) ##para ficar facil de saber quem graduou
-
-
-
-
+            arquivo.write("insert into graduado values(\'%s\',\'%s\',\'%s\',%s,%s);\n"%(x.aluno_id,x.nome,x.curso_id,x.semestre2,x.ano2)) ##para ficar facil de saber quem graduou
 
 
 arquivo.close()
