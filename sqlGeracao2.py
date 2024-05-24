@@ -1,12 +1,9 @@
 from faker import Faker
 import random
+faker = Faker("pt_BR") ##nomes brasileiros
 ##Avisos: 
 ## departamento nao eh um objeto! (ficou muito trabalho pra implementar no codigo ja existente, entao nao fiz :/)
-## FUTURO: 
-## - implementar tcc
-## - implementar grupo_tcc
-## - implementar matriz_curricular
-faker = Faker("pt_BR") ##nomes brasileiros
+
 ## aluno_id possui 8 digitos 
 ## prof_id possui 7 digitos
 ## curso_id possui 6 digitos
@@ -21,7 +18,7 @@ def montarID (qtIds,qtDigitos): ##monta IDs aleatorios
         digitomax +="9"
     for x in range(qtIds):
         novoid = random.randint((10**(qtDigitos-1)),int(digitomax))
-        while novoid in Array or novoid == 48349610:
+        while novoid in Array:
             novoid = random.randint((10**(qtDigitos-1)),int(digitomax))
         Array.append(novoid)
     return Array
@@ -45,7 +42,7 @@ anofinal2 = 2024 ##ano maximo para historico
 
 
 
-qtalunos = 20 ## qtde de alunos 
+qtalunos = 40 ## qtde de alunos 
 aluno_id = montarID(qtalunos,8) ##ids dos alunos
 
 
@@ -277,28 +274,32 @@ for x in range(qtdisc): ##insere dados da disc ( nao usa orientacao objeto :( )
     arquivo.write("insert into disciplina values(\'%s\',\'%s\',\'%s\');\n" %(disc_nomes[x],disc_id[x],idprocurado))
     
    
-for x in cursos: ##insere dados matriz_curricular
+for x in cursos: ##insere dados da matriz_curricular
     sem = 1
     for y in x.discs_ids:
         arquivo.write("insert into matriz_curricular values(\'%s\',\'%s\',%s);\n" %(y,x.curso_id,sem))
         sem +=1
 
-for x in tccs:
+for x in tccs: ##insere dados dos tccs
     
     arquivo.write(x.insertDados())
     for y in range(integrantestcc):
         arquivo.write("insert into grupo_tcc values(\'%s\',\'%s\');\n" %(x.tcc_id,x.integrantes_id[y]))
 
+for x in alunos: ##insere dados dos graduados
+    if x.aula2 !=0:
+        if x.nota >= 5 and x.nota2>=5:
+            ##print(x.aluno_id,x.nome,x.curso_id) ##print de teste
+            arquivo.write("insert into graduado values(\'%s\',\'%s\',\'%s\');\n"%(x.aluno_id,x.nome,x.curso_id)) ##para ficar facil de saber quem graduou
 
-##aluno para modificar e usar para testes
-'''
-arquivo.write("insert into aluno values(\'Pedro Munhoz Rosin\',\'48349610\',\'curso_id\');\n") ##colocar colocar curso_id
-'''
+
 
 
 
 
 arquivo.close()
+
+            
 
 
 
