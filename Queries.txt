@@ -9,8 +9,7 @@ create table historico_professor(
 	prof_id varchar(20),
 	disc_id varchar(20),
 	semestre int,
-	ano int,
-    	primary key (prof_id)
+	ano int
 );
 
 create table aluno(
@@ -26,8 +25,13 @@ create table historico_aluno(
 	curso_id varchar(20),
 	nota float,
 	semestre int,
-	ano int,
-    	primary key (aluno_id)
+	ano int
+);
+
+create table graduado (
+	aluno_id varchar(20),
+	nome varchar(255),
+	curso_id varchar(20)
 );
 
 create table curso (
@@ -69,3 +73,4 @@ create table grupo_tcc (
 	tcc_id varchar(20),
 	aluno_id varchar(255)
 );
+
