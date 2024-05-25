@@ -1,0 +1,32 @@
+1. 
+
+SELECT aluno.nome, aluno.aluno_id, historico_aluno.disc_id, historico_aluno.nota, historico_aluno.semestre, historico_aluno.ano, disciplina.nome
+FROM aluno, historico_aluno, disciplina
+WHERE aluno.aluno_id = historico_aluno.aluno_id AND historico_aluno.disc_id = disciplina.disc_id;
+
+2. 
+
+SELECT professor.nome, professor.prof_id, historico_professor.disc_id, historico_professor.semestre, historico_professor.ano
+FROM professor, historico_professor
+WHERE professor.prof_id = historico_professor.prof_id;
+
+3.
+
+SELECT aluno.nome
+FROM aluno, graduado
+WHERE aluno.aluno_id = graduado.aluno_id
+
+4. 
+SELECT departamento.chefe_id, departamento.nome, professor.prof_id, professor.nome
+FROM departamento, professor
+WHERE departamento.chefe_id = professor.prof_id
+
+5. 
+SELECT aluno.nome, aluno.aluno_id, tcc.prof_id, professor.nome
+FROM aluno
+INNER JOIN grupo_tcc
+ON aluno.aluno_id = grupo_tcc.aluno_id
+INNER JOIN tcc
+ON grupo_tcc.tcc_id = tcc.tcc_id
+INNER JOIN professor
+ON tcc.prof_id = professor.prof_id;
