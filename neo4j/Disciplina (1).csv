@@ -1,0 +1,13 @@
+﻿name;semestre;id_disc;nome_disc;id_dept
+Eng. Eletr;0;ee1;elec1;1
+Eng. Eletr;1;ee2;elec2;1
+Eng. Eletr;2;ee3;elec3;1
+Eng. Eletr;3;ee4;elec4;1
+Ciencia da Computacao;0;cc1;comp1;2
+Ciencia da Computacao;1;cc2;comp2;2
+Ciencia da Computacao;2;cc3;comp3;2
+Ciencia da Computacao;3;cc4;comp4;2
+Eng. Quim;0;eq1;quim1;3
+Eng. Quim;1;eq2;quim2;3
+Eng. Quim;2;eq3;quim3;3
+Eng. Quim;3;eq4;quim4;3

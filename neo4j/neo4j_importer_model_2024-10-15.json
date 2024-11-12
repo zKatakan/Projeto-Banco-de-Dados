@@ -1,0 +1,1415 @@
+{
+  "version": "2.2.0",
+  "visualisation": {
+    "nodes": [
+      {
+        "id": "n:1",
+        "position": {
+          "x": -4.689551678859502,
+          "y": 0.5861939598574377
+        }
+      },
+      {
+        "id": "n:3",
+        "position": {
+          "x": 206.2984310059101,
+          "y": -70.04911121405044
+        }
+      },
+      {
+        "id": "n:4",
+        "position": {
+          "x": 98.96757244563713,
+          "y": 108.1715881899628
+        }
+      },
+      {
+        "id": "n:5",
+        "position": {
+          "x": 328.125,
+          "y": 53.125
+        }
+      },
+      {
+        "id": "n:7",
+        "position": {
+          "x": 243.75,
+          "y": 131.57872701653883
+        }
+      },
+      {
+        "id": "n:9",
+        "position": {
+          "x": 57.14629056462202,
+          "y": -76.23598996435942
+        }
+      }
+    ]
+  },
+  "dataModel": {
+    "version": "2.2.0",
+    "graphSchemaRepresentation": {
+      "version": "1.0.0",
+      "graphSchema": {
+        "nodeLabels": [
+          {
+            "$id": "nl:1",
+            "token": "Aluno",
+            "properties": [
+              {
+                "$id": "p:1",
+                "token": "name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:2",
+                "token": "id_aluno",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:3",
+                "token": "Tot_cred",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:4",
+                "token": "formado",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:5",
+                "token": "formado_ano",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:6",
+                "token": "ciclo",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:7",
+                "token": "id_curso",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:8",
+                "token": "id_tcc",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:3",
+            "token": "Professor",
+            "properties": [
+              {
+                "$id": "p:9",
+                "token": "name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:10",
+                "token": "id_prof",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:11",
+                "token": "id_dept",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:4",
+            "token": "Curso",
+            "properties": [
+              {
+                "$id": "p:30",
+                "token": "id_curso",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:31",
+                "token": "name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:5",
+            "token": "Departamento",
+            "properties": [
+              {
+                "$id": "p:24",
+                "token": "name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:25",
+                "token": "id_chefe",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:26",
+                "token": "nome_chefe",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:27",
+                "token": "id_dept",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:7",
+            "token": "Disciplina",
+            "properties": [
+              {
+                "$id": "p:33",
+                "token": "name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:34",
+                "token": "semestre",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:35",
+                "token": "id_disc",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:36",
+                "token": "nome_disc",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:37",
+                "token": "id_dept",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:9",
+            "token": "TCC",
+            "properties": [
+              {
+                "$id": "p:28",
+                "token": "id_TCC",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:29",
+                "token": "id_prof",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              }
+            ]
+          }
+        ],
+        "relationshipTypes": [
+          {
+            "$id": "rt:2",
+            "token": "Participa",
+            "properties": []
+          },
+          {
+            "$id": "rt:3",
+            "token": "Cursa",
+            "properties": []
+          },
+          {
+            "$id": "rt:5",
+            "token": "Possui",
+            "properties": []
+          },
+          {
+            "$id": "rt:6",
+            "token": "Integra",
+            "properties": []
+          },
+          {
+            "$id": "rt:7",
+            "token": "Contrata",
+            "properties": []
+          },
+          {
+            "$id": "rt:8",
+            "token": "EhChefe",
+            "properties": []
+          },
+          {
+            "$id": "rt:9",
+            "token": "Supervisiona",
+            "properties": []
+          },
+          {
+            "$id": "rt:1",
+            "token": "Ensinou",
+            "properties": [
+              {
+                "$id": "p:15",
+                "token": "ano",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:16",
+                "token": "semestre",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "rt:4",
+            "token": "Cursou",
+            "properties": [
+              {
+                "$id": "p:12",
+                "token": "semestre",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:13",
+                "token": "ano",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:14",
+                "token": "nota",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              }
+            ]
+          }
+        ],
+        "nodeObjectTypes": [
+          {
+            "$id": "n:1",
+            "labels": [
+              {
+                "$ref": "#nl:1"
+              }
+            ]
+          },
+          {
+            "$id": "n:3",
+            "labels": [
+              {
+                "$ref": "#nl:3"
+              }
+            ]
+          },
+          {
+            "$id": "n:4",
+            "labels": [
+              {
+                "$ref": "#nl:4"
+              }
+            ]
+          },
+          {
+            "$id": "n:5",
+            "labels": [
+              {
+                "$ref": "#nl:5"
+              }
+            ]
+          },
+          {
+            "$id": "n:7",
+            "labels": [
+              {
+                "$ref": "#nl:7"
+              }
+            ]
+          },
+          {
+            "$id": "n:9",
+            "labels": [
+              {
+                "$ref": "#nl:9"
+              }
+            ]
+          }
+        ],
+        "relationshipObjectTypes": [
+          {
+            "$id": "r:2",
+            "type": {
+              "$ref": "#rt:2"
+            },
+            "from": {
+              "$ref": "#n:1"
+            },
+            "to": {
+              "$ref": "#n:9"
+            }
+          },
+          {
+            "$id": "r:3",
+            "type": {
+              "$ref": "#rt:3"
+            },
+            "from": {
+              "$ref": "#n:1"
+            },
+            "to": {
+              "$ref": "#n:4"
+            }
+          },
+          {
+            "$id": "r:5",
+            "type": {
+              "$ref": "#rt:5"
+            },
+            "from": {
+              "$ref": "#n:5"
+            },
+            "to": {
+              "$ref": "#n:7"
+            }
+          },
+          {
+            "$id": "r:6",
+            "type": {
+              "$ref": "#rt:6"
+            },
+            "from": {
+              "$ref": "#n:4"
+            },
+            "to": {
+              "$ref": "#n:7"
+            }
+          },
+          {
+            "$id": "r:7",
+            "type": {
+              "$ref": "#rt:7"
+            },
+            "from": {
+              "$ref": "#n:5"
+            },
+            "to": {
+              "$ref": "#n:3"
+            }
+          },
+          {
+            "$id": "r:8",
+            "type": {
+              "$ref": "#rt:8"
+            },
+            "from": {
+              "$ref": "#n:3"
+            },
+            "to": {
+              "$ref": "#n:5"
+            }
+          },
+          {
+            "$id": "r:9",
+            "type": {
+              "$ref": "#rt:9"
+            },
+            "from": {
+              "$ref": "#n:3"
+            },
+            "to": {
+              "$ref": "#n:9"
+            }
+          },
+          {
+            "$id": "r:1",
+            "type": {
+              "$ref": "#rt:1"
+            },
+            "from": {
+              "$ref": "#n:3"
+            },
+            "to": {
+              "$ref": "#n:7"
+            }
+          },
+          {
+            "$id": "r:4",
+            "type": {
+              "$ref": "#rt:4"
+            },
+            "from": {
+              "$ref": "#n:1"
+            },
+            "to": {
+              "$ref": "#n:7"
+            }
+          }
+        ],
+        "constraints": [
+          {
+            "$id": "c:1",
+            "name": "id_aluno_Aluno_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:1"
+            },
+            "properties": [
+              {
+                "$ref": "#p:2"
+              }
+            ]
+          },
+          {
+            "$id": "c:2",
+            "name": "id_prof_Professor_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:3"
+            },
+            "properties": [
+              {
+                "$ref": "#p:10"
+              }
+            ]
+          },
+          {
+            "$id": "c:5",
+            "name": "id_dept_Departamento_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:5"
+            },
+            "properties": [
+              {
+                "$ref": "#p:27"
+              }
+            ]
+          },
+          {
+            "$id": "c:6",
+            "name": "id_disc_Disciplina_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:7"
+            },
+            "properties": [
+              {
+                "$ref": "#p:35"
+              }
+            ]
+          },
+          {
+            "$id": "c:7",
+            "name": "id_TCC_TCC_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:9"
+            },
+            "properties": [
+              {
+                "$ref": "#p:28"
+              }
+            ]
+          },
+          {
+            "$id": "c:8",
+            "name": "id_curso_Curso_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:4"
+            },
+            "properties": [
+              {
+                "$ref": "#p:30"
+              }
+            ]
+          }
+        ],
+        "indexes": [
+          {
+            "$id": "i:1",
+            "name": "id_aluno_Aluno_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:1"
+            },
+            "properties": [
+              {
+                "$ref": "#p:2"
+              }
+            ]
+          },
+          {
+            "$id": "i:2",
+            "name": "id_prof_Professor_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:3"
+            },
+            "properties": [
+              {
+                "$ref": "#p:10"
+              }
+            ]
+          },
+          {
+            "$id": "i:5",
+            "name": "id_dept_Departamento_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:5"
+            },
+            "properties": [
+              {
+                "$ref": "#p:27"
+              }
+            ]
+          },
+          {
+            "$id": "i:6",
+            "name": "id_disc_Disciplina_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:7"
+            },
+            "properties": [
+              {
+                "$ref": "#p:35"
+              }
+            ]
+          },
+          {
+            "$id": "i:7",
+            "name": "id_TCC_TCC_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:9"
+            },
+            "properties": [
+              {
+                "$ref": "#p:28"
+              }
+            ]
+          },
+          {
+            "$id": "i:8",
+            "name": "id_curso_Curso_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:4"
+            },
+            "properties": [
+              {
+                "$ref": "#p:30"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "graphSchemaExtensionsRepresentation": {
+      "nodeKeyProperties": [
+        {
+          "node": {
+            "$ref": "#n:1"
+          },
+          "keyProperty": {
+            "$ref": "#p:2"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:3"
+          },
+          "keyProperty": {
+            "$ref": "#p:10"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:5"
+          },
+          "keyProperty": {
+            "$ref": "#p:27"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:7"
+          },
+          "keyProperty": {
+            "$ref": "#p:35"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:9"
+          },
+          "keyProperty": {
+            "$ref": "#p:28"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:4"
+          },
+          "keyProperty": {
+            "$ref": "#p:30"
+          }
+        }
+      ]
+    },
+    "graphMappingRepresentation": {
+      "dataSourceSchema": {
+        "type": "local",
+        "tableSchemas": [
+          {
+            "name": "TCC.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id_TCC",
+                "type": "integer",
+                "sample": "5",
+                "include": true
+              },
+              {
+                "name": "id_prof",
+                "type": "integer",
+                "sample": "2",
+                "include": true
+              }
+            ]
+          },
+          {
+            "name": "Hist_aluno.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id_h",
+                "type": "integer",
+                "sample": "1",
+                "include": true
+              },
+              {
+                "name": "name",
+                "type": "string",
+                "sample": "Sofia",
+                "include": true
+              },
+              {
+                "name": "id_aluno",
+                "type": "string",
+                "sample": "123.123.13-0",
+                "include": true
+              },
+              {
+                "name": "id_disc",
+                "type": "string",
+                "sample": "ee1",
+                "include": true
+              },
+              {
+                "name": "semestre",
+                "type": "boolean",
+                "sample": "0",
+                "include": true
+              },
+              {
+                "name": "ano",
+                "type": "integer",
+                "sample": "2022",
+                "include": true
+              },
+              {
+                "name": "nota",
+                "type": "float",
+                "sample": "7.2",
+                "include": true
+              }
+            ]
+          },
+          {
+            "name": "Professor - Folha1.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "name",
+                "type": "string",
+                "sample": "Ricardo",
+                "include": true
+              },
+              {
+                "name": "id_prof",
+                "type": "integer",
+                "sample": "1",
+                "include": true
+              },
+              {
+                "name": "id_dept",
+                "type": "integer",
+                "sample": "1",
+                "include": true
+              }
+            ]
+          },
+          {
+            "name": "Departamento - Folha1.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "name",
+                "type": "string",
+                "sample": "Eng. Eletr",
+                "include": true
+              },
+              {
+                "name": "id_chefe",
+                "type": "integer",
+                "sample": "1",
+                "include": true
+              },
+              {
+                "name": "nome_chefe",
+                "type": "string",
+                "sample": "Ricardo",
+                "include": true
+              },
+              {
+                "name": "id_dept",
+                "type": "integer",
+                "sample": "1",
+                "include": true
+              }
+            ]
+          },
+          {
+            "name": "Aluno - Aluno.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "name",
+                "type": "string",
+                "sample": "Sofia",
+                "include": true
+              },
+              {
+                "name": "id_aluno",
+                "type": "string",
+                "sample": "123.123.13-0",
+                "include": true
+              },
+              {
+                "name": "Tot_cred",
+                "type": "integer",
+                "sample": "5",
+                "include": true
+              },
+              {
+                "name": "formado",
+                "type": "integer",
+                "sample": "0",
+                "include": true
+              },
+              {
+                "name": "formado_ano",
+                "type": "integer",
+                "sample": "2022",
+                "include": true
+              },
+              {
+                "name": "ciclo",
+                "type": "string",
+                "sample": "1",
+                "include": true
+              },
+              {
+                "name": "id_curso",
+                "type": "string",
+                "sample": "ee",
+                "include": true
+              },
+              {
+                "name": "id_tcc",
+                "type": "integer",
+                "sample": "1",
+                "include": true
+              }
+            ]
+          },
+          {
+            "name": "Curso - Folha1.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id_curso",
+                "type": "string",
+                "sample": "ee",
+                "include": true
+              },
+              {
+                "name": "name",
+                "type": "string",
+                "sample": "eletrica",
+                "include": true
+              }
+            ]
+          },
+          {
+            "name": "Hist_prof.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id_h",
+                "type": "integer",
+                "sample": "1",
+                "include": true
+              },
+              {
+                "name": "name",
+                "type": "string",
+                "sample": "Leonardo",
+                "include": true
+              },
+              {
+                "name": "id_prof",
+                "type": "integer",
+                "sample": "2",
+                "include": true
+              },
+              {
+                "name": "id_disc",
+                "type": "string",
+                "sample": "cc1",
+                "include": true
+              },
+              {
+                "name": "ano",
+                "type": "integer",
+                "sample": "2023",
+                "include": true
+              },
+              {
+                "name": "semestre",
+                "type": "boolean",
+                "sample": "0",
+                "include": true
+              }
+            ]
+          },
+          {
+            "name": "Disciplina (1).csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "name",
+                "type": "string",
+                "sample": "Eng. Eletr",
+                "include": true
+              },
+              {
+                "name": "semestre",
+                "type": "integer",
+                "sample": "0",
+                "include": true
+              },
+              {
+                "name": "id_disc",
+                "type": "string",
+                "sample": "ee1",
+                "include": true
+              },
+              {
+                "name": "nome_disc",
+                "type": "string",
+                "sample": "elec1",
+                "include": true
+              },
+              {
+                "name": "id_dept",
+                "type": "integer",
+                "sample": "1",
+                "include": true
+              }
+            ]
+          },
+          {
+            "name": "MCC.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id_curso",
+                "type": "string",
+                "sample": "ee",
+                "include": true
+              },
+              {
+                "name": "Semestre",
+                "type": "integer",
+                "sample": "0",
+                "include": true
+              },
+              {
+                "name": "id_disciplina",
+                "type": "string",
+                "sample": "ee1",
+                "include": true
+              },
+              {
+                "name": "name",
+                "type": "string",
+                "sample": "elec1",
+                "include": true
+              }
+            ]
+          }
+        ]
+      },
+      "nodeMappings": [
+        {
+          "node": {
+            "$ref": "#n:1"
+          },
+          "tableName": "Aluno - Aluno.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "name",
+              "property": {
+                "$ref": "#p:1"
+              }
+            },
+            {
+              "fieldName": "id_aluno",
+              "property": {
+                "$ref": "#p:2"
+              }
+            },
+            {
+              "fieldName": "Tot_cred",
+              "property": {
+                "$ref": "#p:3"
+              }
+            },
+            {
+              "fieldName": "formado",
+              "property": {
+                "$ref": "#p:4"
+              }
+            },
+            {
+              "fieldName": "formado_ano",
+              "property": {
+                "$ref": "#p:5"
+              }
+            },
+            {
+              "fieldName": "ciclo",
+              "property": {
+                "$ref": "#p:6"
+              }
+            },
+            {
+              "fieldName": "id_curso",
+              "property": {
+                "$ref": "#p:7"
+              }
+            },
+            {
+              "fieldName": "id_tcc",
+              "property": {
+                "$ref": "#p:8"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:3"
+          },
+          "tableName": "Professor - Folha1.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "name",
+              "property": {
+                "$ref": "#p:9"
+              }
+            },
+            {
+              "fieldName": "id_prof",
+              "property": {
+                "$ref": "#p:10"
+              }
+            },
+            {
+              "fieldName": "id_dept",
+              "property": {
+                "$ref": "#p:11"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:5"
+          },
+          "tableName": "Departamento - Folha1.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "name",
+              "property": {
+                "$ref": "#p:24"
+              }
+            },
+            {
+              "fieldName": "id_chefe",
+              "property": {
+                "$ref": "#p:25"
+              }
+            },
+            {
+              "fieldName": "nome_chefe",
+              "property": {
+                "$ref": "#p:26"
+              }
+            },
+            {
+              "fieldName": "id_dept",
+              "property": {
+                "$ref": "#p:27"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:9"
+          },
+          "tableName": "TCC.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id_TCC",
+              "property": {
+                "$ref": "#p:28"
+              }
+            },
+            {
+              "fieldName": "id_prof",
+              "property": {
+                "$ref": "#p:29"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:4"
+          },
+          "tableName": "Curso - Folha1.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id_curso",
+              "property": {
+                "$ref": "#p:30"
+              }
+            },
+            {
+              "fieldName": "name",
+              "property": {
+                "$ref": "#p:31"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:7"
+          },
+          "tableName": "Disciplina (1).csv",
+          "propertyMappings": [
+            {
+              "fieldName": "name",
+              "property": {
+                "$ref": "#p:33"
+              }
+            },
+            {
+              "fieldName": "semestre",
+              "property": {
+                "$ref": "#p:34"
+              }
+            },
+            {
+              "fieldName": "id_disc",
+              "property": {
+                "$ref": "#p:35"
+              }
+            },
+            {
+              "fieldName": "nome_disc",
+              "property": {
+                "$ref": "#p:36"
+              }
+            },
+            {
+              "fieldName": "id_dept",
+              "property": {
+                "$ref": "#p:37"
+              }
+            }
+          ]
+        }
+      ],
+      "relationshipMappings": [
+        {
+          "relationship": {
+            "$ref": "#r:2"
+          },
+          "tableName": "Aluno - Aluno.csv",
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "id_aluno"
+          },
+          "toMapping": {
+            "fieldName": "id_tcc"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:3"
+          },
+          "tableName": "Aluno - Aluno.csv",
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "id_aluno"
+          },
+          "toMapping": {
+            "fieldName": "id_curso"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:5"
+          },
+          "tableName": "Disciplina (1).csv",
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "id_dept"
+          },
+          "toMapping": {
+            "fieldName": "id_disc"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:7"
+          },
+          "tableName": "Professor - Folha1.csv",
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "id_dept"
+          },
+          "toMapping": {
+            "fieldName": "id_prof"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:8"
+          },
+          "tableName": "Departamento - Folha1.csv",
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "id_chefe"
+          },
+          "toMapping": {
+            "fieldName": "id_dept"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:6"
+          },
+          "tableName": "MCC.csv",
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "id_curso"
+          },
+          "toMapping": {
+            "fieldName": "id_disciplina"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:9"
+          },
+          "tableName": "TCC.csv",
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "id_prof"
+          },
+          "toMapping": {
+            "fieldName": "id_TCC"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:4"
+          },
+          "tableName": "Hist_aluno.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "semestre",
+              "property": {
+                "$ref": "#p:12"
+              }
+            },
+            {
+              "fieldName": "ano",
+              "property": {
+                "$ref": "#p:13"
+              }
+            },
+            {
+              "fieldName": "nota",
+              "property": {
+                "$ref": "#p:14"
+              }
+            }
+          ],
+          "fromMapping": {
+            "fieldName": "id_aluno"
+          },
+          "toMapping": {
+            "fieldName": "id_disc"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:1"
+          },
+          "tableName": "Hist_prof.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "ano",
+              "property": {
+                "$ref": "#p:15"
+              }
+            },
+            {
+              "fieldName": "semestre",
+              "property": {
+                "$ref": "#p:16"
+              }
+            }
+          ],
+          "fromMapping": {
+            "fieldName": "id_prof"
+          },
+          "toMapping": {
+            "fieldName": "id_disc"
+          }
+        }
+      ]
+    },
+    "configurations": {
+      "idsToIgnore": []
+    }
+  }
+}

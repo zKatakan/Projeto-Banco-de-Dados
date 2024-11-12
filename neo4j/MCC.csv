@@ -1,0 +1,13 @@
+﻿id_curso;Semestre;id_disciplina;name
+ee;0;ee1;elec1
+ee;1;ee2;elec2
+ee;2;ee3;elec3
+ee;3;ee4;elec4
+cc;0;cc1;comp1
+cc;1;cc2;comp2
+cc;2;cc3;comp3
+cc;3;cc4;comp4
+eq;0;eq1;quim1
+eq;1;eq2;quim2
+eq;2;eq3;quim3
+eq;3;eq4;quim4
